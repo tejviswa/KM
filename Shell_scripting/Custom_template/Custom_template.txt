@@ -1,0 +1,64 @@
+-------------------------
+step 1:
+-------------------------
+--cd ~/.vim/templates
+
+--------------------------
+step 2:
+-------------------------
+create a new script file 
+vi shell-skeleton.sh
+=====================
+#!/bin/bash
+
+echo "
+#!/bin/bash
+
+
+# Name : Tejo prapulla
+# KMID : KM56BESD04
+# Date : `date +"%d-%m-%Y"`
+# Program: 
+# Sample Input :
+# Sample output :
+#
+
+
+" > ~/.vim/templates/shell.sh
+
+===============================
+save and close
+
+-----------------------
+step 3:
+--------------------- 
+give executable commands for the shell_skeleton.sh
+--chmod a+x shell_skeleton.sh
+--./shell_skeleton.sh
+
+-----------------------
+step 4:
+----------------------
+--vi ~/.vimrc
+
+add new line in this
+	:autocmd BufNewFile *.sh 0r ~/.vim/templates/shell.sh
+save and close
+
+
+------------------
+step 5:
+------------------
+--vi ~/.bashrc
+add a new line in this
+	bash ~/.vim/templates/shell_skeleton.sh
+save and close
+
+---------------
+step 6:
+--------------
+source ~/.bashrc
+
+
+
+
