@@ -1,0 +1,234 @@
+Breakpoint 1 at 0x814: file strstr.c, line 29.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/gdb/8-strstr/gdb 
+Enter string 
+prapulla
+ENter sub string
+ul
+
+Breakpoint 1, main () at strstr.c:29
+29		in=my_strstr(s1,sub);
+(gdb) s
+my_strstr (str1=0x7fffffffde70 "prapulla", sub=0x7fffffffde50 "ul")
+    at strstr.c:38
+38		int i,j=0,k,l,count;
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) p i
+$1 = 0
+(gdb) p k
+$2 = 0
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) p str1[i]
+$3 = 114 'r'
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) p str1[i]
+$4 = 114 'r'
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) p i
+$5 = 1
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) p str1[i]
+$6 = 97 'a'
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) p i
+$7 = 3
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) p str[i]
+No symbol "str" in current context.
+(gdb) p str1[i]
+$8 = 112 'p'
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) s
+46				count++;
+(gdb) p str1[i]
+$9 = 117 'u'
+(gdb) s
+47				for(j=1;str1[++k]==sub[j];j++)
+(gdb) p count
+$10 = 1
+(gdb) 
+$11 = 1
+(gdb) s
+49					count++;
+(gdb) p str1[i]
+$12 = 117 'u'
+(gdb) s
+47				for(j=1;str1[++k]==sub[j];j++)
+(gdb) s
+51				for(l=0;sub[l]!='\0';l++);
+(gdb) p str1[i]
+$13 = 117 'u'
+(gdb) s
+52				if(count==l)
+(gdb) s
+53					return i;
+(gdb) s
+56	}
+(gdb) s
+main () at strstr.c:30
+30		printf("index  is %d\n",in);
+(gdb) n
+index  is 4
+32		return 0;
+(gdb) s
+33	}
+(gdb) s
+__libc_start_main (main=0x5555555547aa <main>, argc=1, 
+    argv=0x7fffffffdfc8, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdfb8)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/gdb/8-strstr/gdb 
+Enter string 
+tej 
+ENter sub string
+ej
+
+Breakpoint 1, main () at strstr.c:29
+29		in=my_strstr(s1,sub);
+(gdb) s
+my_strstr (str1=0x7fffffffde70 "tej", sub=0x7fffffffde50 "ej")
+    at strstr.c:38
+38		int i,j=0,k,l,count;
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) p str1[i]
+$14 = 116 't'
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) p sub[j]
+$15 = 101 'e'
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) p str[i]
+No symbol "str" in current context.
+(gdb) p str1[i]
+$16 = 101 'e'
+(gdb) p sub[j]
+$17 = 101 'e'
+(gdb) s
+46				count++;
+(gdb) s
+47				for(j=1;str1[++k]==sub[j];j++)
+(gdb) p count
+$18 = 1
+(gdb) s
+49					count++;
+(gdb) s
+47				for(j=1;str1[++k]==sub[j];j++)
+(gdb) p str[i]
+No symbol "str" in current context.
+(gdb) p str1[i]
+$19 = 101 'e'
+(gdb) p sub[j]
+$20 = 106 'j'
+(gdb) s
+49					count++;
+(gdb) s
+47				for(j=1;str1[++k]==sub[j];j++)
+(gdb) p str1[k]
+$21 = 0 '\000'
+(gdb) p sub[j]
+$22 = 0 '\000'
+(gdb) s
+51				for(l=0;sub[l]!='\0';l++);
+(gdb) s
+52				if(count==l)
+(gdb) p count
+$23 = 3
+(gdb) p l
+$24 = 2
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) p str1[i]
+$25 = 106 'j'
+(gdb) p sub[j]
+$26 = 101 'e'
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+56	if(count==l)
+(gdb) s
+main () at strstr.c:30
+30		printf("index  is %d\n",in);
+(gdb) n
+index  is 0
+32		return 0;
+(gdb) s
+33	}
+(gdb) p count
+No symbol "count" in current context.
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 3333] will be killed.
+
+Quit anyway? (y or n) y
+

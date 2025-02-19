@@ -1,0 +1,51 @@
+Reading symbols from pointers-dbg...done.
+(gdb) l
+1	/*
+2	* Name : Tejo prapulla
+3	* KMID : KM56BESD04
+4	* Date : 05-11-2024
+5	* Program: 
+6	* Sample Input :
+7	* Sample output :
+8	*
+9	*/
+10	
+(gdb) l
+11	
+12	#include<stdio.h>
+13	int main()
+14	{
+15		int x=5;
+16		int *p1=&x;
+17		printf("%d\n",*p1);
+18		
+19		return 0;
+20	}
+(gdb) l
+21	
+(gdb) l
+Line number 22 out of range; pointers.c has 21 lines.
+(gdb) b 15
+Breakpoint 1 at 0x6c1: file pointers.c, line 15.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/gdb/4-pointers/pointers-dbg 
+
+Breakpoint 1, main () at pointers.c:15
+15		int x=5;
+(gdb) s
+16		int *p1=&x;
+(gdb) s
+17		printf("%d\n",*p1);
+(gdb) n
+5
+19		return 0;
+(gdb) s
+20	}
+(gdb) s
+__libc_start_main (main=0x5555555546aa <main>, argc=1, 
+    argv=0x7fffffffdfa8, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdf98)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) 
+

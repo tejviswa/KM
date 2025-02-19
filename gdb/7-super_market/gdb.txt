@@ -1,0 +1,344 @@
+Reading symbols from gdb...done.
+(gdb) l
+3	* KMID : KM56BESD04
+4	* Date : 15-10-2024
+5	* Program: Wap for the 4 departments of a supermarket:Sales,Purchase,Stock and main in four differeant source code files 
+6	* Sample Input :
+7	* Sample output :
+8	*
+9	*/
+10	
+11	
+12	#include<stdio.h>
+(gdb) l
+13	#include"header.h"                                                        //header file
+14	int st;                                                                    //declaring global variable for stock
+15	int max=500;                                                                //declaring global variable for maximum value of stock room
+16	int main()                                                                    //main function
+17	{
+18		int n,ret;                                                           //declaring input variables
+19	
+20		printf("Welcome to the SUPERMARKET\n");                              //Greeting message
+21		while(1)                                                            //continious loop until exit is pressed
+22		{
+(gdb) l
+23			printf("\n1.Check Stock Availability\n");                         //displaying menu
+24			printf("2.Purchase new Item\n");
+25			printf("3.Sell Items\n");
+26			printf("4.Quit\n");                        
+27			
+28			printf("Enter Choice: ");                                         //entering choice from available menu options
+29	
+30			ret=scanf("%d",&n);                                                //reading choice from menu
+31			while(ret!=1)                                                      //error handling
+32			{
+(gdb) l
+33				printf("Error!!! Invalid Input \n\nEnter 1/2/3/4: ");                      //printing error message
+34				while(getchar() != '\n');
+35				ret=scanf("%d",&n);                                              //reading choice again
+36			}
+37	
+38			switch(n)                                                          //performing specific function call based on choice
+39			{   
+40				case 1:stock();break;                                        // stock function call
+41				case 2:purchase();break;                                         //purchase function call
+42				case 3:sell();break;                                           //sales function call
+(gdb) l
+43				case 4:printf("\nThank you for Shopping\n");                    //End greeting message and exit
+44					   return 0;
+45				default:printf("Enter correct choice\n");                         //error message if entered wrong choice
+46			}
+47		}
+48	
+49			return 0;
+50	}
+51	
+(gdb) b 41
+Breakpoint 1 at 0x894: file main.c, line 41.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/gdb/7-super_market/gdb 
+Welcome to the SUPERMARKET
+
+1.Check Stock Availability
+2.Purchase new Item
+3.Sell Items
+4.Quit
+Enter Choice: 2
+
+Breakpoint 1, main () at main.c:41
+41				case 2:purchase();break;                                         //purchase function call
+(gdb) s
+purchase () at purchase.c:26
+26	{
+(gdb) l
+21	 */
+22	
+23	
+24	
+25	void purchase()
+26	{
+27		int ret,a,b;                                                    //declaring inputs
+28		
+29		printf("Purchasing new Item\n");                        //printing message
+30		printf("Enter number of items to purchase: ");         //Printing message
+(gdb) l
+31	
+32		ret=scanf("%d",&a);                                     //reading the value of purchase
+33		while(ret!=1)                                                //error handling
+34		{
+35			printf("Enter numbers only\n");                        //printing error message
+36			while(getchar()!='\n');                               
+37			ret=scanf("%d",&a);                                    //reading value again
+38		}
+39	
+40		max=500-st;                                              //calculating the remaining stock in stock room
+(gdb) l
+41		
+42		if(max==a||a<max)                                        //if the remaining stock is equal to the input purchase value or is less than the remaining stock value then the items are successfully purchased
+43		{
+44	
+45			st=st+a;                                            //updating the stock value by adding the given values with the previious stock value                                             
+46			printf("%d items are purchased succesfully\n",a);         //prinitng the message
+47			max=max-a;                                            //updating the maximum value
+48		}
+49	
+50		else if(a>max)                                         //checking if the given purchase value is greater than the max value 500
+(gdb) l
+51		{
+52			printf("Purchase is not succesful\n");                //printing message
+53	
+54			if(max==0)                                          //checking if the maximum value is 0 so that to print required message
+55			{
+56				printf("Stock is full\n");                        //printing message
+57			}
+58			else
+59				printf("Stock room is available for purchasing %d items only\n",max);   //printing message
+60		}
+(gdb) l
+61	
+62		else 
+63		{
+64			printf("Purchase is not succesful\n");                                        //printing message
+65			printf("Stock room is available for purchasing %d items only\n",max);            //printing message with remaining stock value
+66		}
+67	
+68	}
+69	
+70	
+(gdb) l
+71	
+72	
+(gdb) l
+Line number 73 out of range; purchase.c has 72 lines.
+(gdb) s
+29		printf("Purchasing new Item\n");                        //printing message
+(gdb) n
+Purchasing new Item
+30		printf("Enter number of items to purchase: ");         //Printing message
+(gdb) n
+32		ret=scanf("%d",&a);                                     //reading the value of purchase
+(gdb) n
+Enter number of items to purchase: 200
+33		while(ret!=1)                                                //error handling
+(gdb) s
+40		max=500-st;                                              //calculating the remaining stock in stock room
+(gdb) s
+42		if(max==a||a<max)                                        //if the remaining stock is equal to the input purchase value or is less than the remaining stock value then the items are successfully purchased
+(gdb) p max
+$1 = 500
+(gdb) p st
+$2 = 0
+(gdb) s
+45			st=st+a;                                            //updating the stock value by adding the given values with the previious stock value                                             
+(gdb) s
+46			printf("%d items are purchased succesfully\n",a);         //prinitng the message
+(gdb) n
+200 items are purchased succesfully
+47			max=max-a;                                            //updating the maximum value
+(gdb) p st
+$3 = 200
+(gdb) p a
+$4 = 200
+(gdb) s
+68	}
+(gdb) p max
+$5 = 300
+(gdb) s
+main () at main.c:23
+23			printf("\n1.Check Stock Availability\n");                         //displaying menu
+(gdb) n
+
+1.Check Stock Availability
+24			printf("2.Purchase new Item\n");
+(gdb) n
+2.Purchase new Item
+25			printf("3.Sell Items\n");
+(gdb) n
+3.Sell Items
+26			printf("4.Quit\n");                        
+(gdb) n
+4.Quit
+28			printf("Enter Choice: ");                                         //entering choice from available menu options
+(gdb) n
+30			ret=scanf("%d",&n);                                                //reading choice from menu
+(gdb) n
+Enter Choice: 3
+31			while(ret!=1)                                                      //error handling
+(gdb) s
+38			switch(n)                                                          //performing specific function call based on choice
+(gdb) s
+42				case 3:sell();break;                                           //sales function call
+(gdb) s
+sell () at sales.c:23
+23	{
+(gdb) l
+18	 *	@retval : no return value
+19	 */
+20	
+21	
+22	void sell()
+23	{
+24		int b;                                                                 //declaring input variable
+25		printf("Sell Items\n");                                              //printing message
+26		printf("Enter number of items to sell: ");                            //printing message
+27	
+(gdb) l
+28		scanf("%d",&b);                                                         //reading the number of items to sell
+29	
+30		if(b>st)                                            // checking if the number of items given by user is greater than current stock value
+31		{
+32			printf("selling is not success\n");                           //then the sale is not succesful
+33			if(st==0)                                                     //checking if the stock value is 0 
+34			{    
+35				printf("Stock is empty\n");                           // if the stock is empty we can't sell further so printing stock is empty
+36			}
+37			else
+(gdb) l
+38				printf("%d stocks are available to sell\n",st);                //or else printing the stock items available for sale 
+39		}
+40		else
+41		{
+42			printf("%d items sold succesfully\n",b);              //if the given sale items are less than the stock then the sale is succesful
+43			st=st-b;                                                       //updating the stock value after a succesfull sale
+44			
+45		}
+46	
+47	
+(gdb) 
+48	}
+49	
+(gdb) 
+Line number 50 out of range; sales.c has 49 lines.
+(gdb) s
+25		printf("Sell Items\n");                                              //printing message
+(gdb) n
+Sell Items
+26		printf("Enter number of items to sell: ");                            //printing message
+(gdb) n
+28		scanf("%d",&b);                                                         //reading the number of items to sell
+(gdb) n
+Enter number of items to sell: 200
+30		if(b>st)                                            // checking if the number of items given by user is greater than current stock value
+(gdb) s
+42			printf("%d items sold succesfully\n",b);              //if the given sale items are less than the stock then the sale is succesful
+(gdb) p b
+$6 = 200
+(gdb) p st
+$7 = 200
+(gdb) n
+200 items sold succesfully
+43			st=st-b;                                                       //updating the stock value after a succesfull sale
+(gdb) s
+48	}
+(gdb) p st
+$8 = 0
+(gdb) p b
+$9 = 200
+(gdb) s
+main () at main.c:23
+23			printf("\n1.Check Stock Availability\n");                         //displaying menu
+(gdb) n
+
+1.Check Stock Availability
+24			printf("2.Purchase new Item\n");
+(gdb) n
+2.Purchase new Item
+25			printf("3.Sell Items\n");
+(gdb) n
+3.Sell Items
+26			printf("4.Quit\n");                        
+(gdb) n
+4.Quit
+28			printf("Enter Choice: ");                                         //entering choice from available menu options
+(gdb) n
+30			ret=scanf("%d",&n);                                                //reading choice from menu
+(gdb) n
+Enter Choice: 1
+31			while(ret!=1)                                                      //error handling
+(gdb) s
+38			switch(n)                                                          //performing specific function call based on choice
+(gdb) s
+40				case 1:stock();break;                                        // stock function call
+(gdb) s
+stock () at stock.c:25
+25		printf("Checking Availability Stocks\n");                              //printing message
+(gdb) n
+Checking Availability Stocks
+26		printf("Availability Stocks:%d \n",st);                            //printing the current available stocks using the global variable st
+(gdb) l
+21	
+22	void stock()                
+23	{
+24		
+25		printf("Checking Availability Stocks\n");                              //printing message
+26		printf("Availability Stocks:%d \n",st);                            //printing the current available stocks using the global variable st
+27		
+28		
+29	}
+30	
+(gdb) l
+Line number 31 out of range; stock.c has 30 lines.
+(gdb) l
+Line number 31 out of range; stock.c has 30 lines.
+(gdb) n
+Availability Stocks:0 
+29	}
+(gdb) s
+main () at main.c:23
+23			printf("\n1.Check Stock Availability\n");                         //displaying menu
+(gdb) n
+
+1.Check Stock Availability
+24			printf("2.Purchase new Item\n");
+(gdb) n
+2.Purchase new Item
+25			printf("3.Sell Items\n");
+(gdb) n
+3.Sell Items
+26			printf("4.Quit\n");                        
+(gdb) n
+4.Quit
+28			printf("Enter Choice: ");                                         //entering choice from available menu options
+(gdb) n
+30			ret=scanf("%d",&n);                                                //reading choice from menu
+(gdb) n
+Enter Choice: 4
+31			while(ret!=1)                                                      //error handling
+(gdb) s
+38			switch(n)                                                          //performing specific function call based on choice
+(gdb) s
+43				case 4:printf("\nThank you for Shopping\n");                    //End greeting message and exit
+(gdb) n
+
+Thank you for Shopping
+44					   return 0;
+(gdb) s
+50	}
+(gdb) s
+__libc_start_main (main=0x5555555547aa <main>, argc=1, 
+    argv=0x7fffffffdfb8, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdfa8)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) 
+

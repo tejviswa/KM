@@ -1,0 +1,72 @@
+Reading symbols from dbg...done.
+(gdb) l
+9	*/
+10	
+11	
+12	#include<stdio.h>
+13	void swap(int *a,int *b)
+14	{
+15		int t;
+16		t=*a;
+17		*a=*b;
+18		*b=t;
+(gdb) l
+19		
+20		printf("After in swap():a=%d ,b=%d \n",*a,*b);
+21	}
+22	int main()
+23	{
+24		int a=10,b=15;
+25		printf("Before in main :a=%d ,b=%d \n",a,b);
+26		swap(&a,&b);
+27		printf("After in main():a=%d ,b=%d \n",a,b);
+28	
+(gdb) l
+29		return 0;
+30	}
+(gdb) b 24
+Breakpoint 1 at 0x711: file cbr.c, line 24.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/gdb/6-CBr/dbg 
+
+Breakpoint 1, main () at cbr.c:24
+24		int a=10,b=15;
+(gdb) s
+25		printf("Before in main :a=%d ,b=%d \n",a,b);
+(gdb) n
+Before in main :a=10 ,b=15 
+26		swap(&a,&b);
+(gdb) s
+swap (a=0x7fffffffded0, b=0x7fffffffded4) at cbr.c:16
+16		t=*a;
+(gdb) s
+17		*a=*b;
+(gdb) p t
+$1 = 10
+(gdb) s
+18		*b=t;
+(gdb) p *a
+$2 = 15
+(gdb) s
+20		printf("After in swap():a=%d ,b=%d \n",*a,*b);
+(gdb) n
+After in swap():a=15 ,b=10 
+21	}
+(gdb) p *b
+$3 = 10
+(gdb) s
+main () at cbr.c:27
+27		printf("After in main():a=%d ,b=%d \n",a,b);
+(gdb) n
+After in main():a=15 ,b=10 
+29		return 0;
+(gdb) s
+30	}
+(gdb) s
+__libc_start_main (main=0x5555555546fa <main>, argc=1, 
+    argv=0x7fffffffdfc8, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdfb8)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) 
+

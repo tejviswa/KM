@@ -1,0 +1,47 @@
+Reading symbols from grading-dbg...done.
+(gdb) b 19
+Breakpoint 1 at 0x781: file 2-grading.c, line 19.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/gdb/2-grading/grading-dbg 
+
+Breakpoint 1, main () at 2-grading.c:19
+19		printf("Enter marks of 6 subjects\n");
+(gdb) n
+Enter marks of 6 subjects
+20		scanf("%d%d%d%d%d%d",&sub1,&sub2,&sub3,&sub4,&sub5,&sub6);//reading inputs
+(gdb) n
+45
+45
+78
+65
+32
+98
+22		perc=(float)(sub1+sub2+sub3+sub4+sub5+sub6)/6;//calculating percentage
+(gdb) s
+23		printf("percentage is %0.2f\n",perc);
+(gdb) n
+percentage is 60.50
+24		if(perc>0 && perc<=39)//checking condition
+(gdb) p perc
+$1 = 60.5
+(gdb) s
+26		else if(perc>=40 && perc<=49)//checking condition
+(gdb) s
+28		else if(perc>=50 && perc<=59)//checking condition
+(gdb) s
+30		else if(perc>=60 && perc<=79)//checking condition
+(gdb) s
+31			printf("First division\n");
+(gdb) n
+First division
+35		return 0;
+(gdb) s
+36	}
+(gdb) s
+__libc_start_main (main=0x55555555476a <main>, argc=1, 
+    argv=0x7fffffffdfa8, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdf98)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) 
+

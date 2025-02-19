@@ -1,0 +1,187 @@
+Reading symbols from gdb...done.
+(gdb) l
+4	* Date : 05-11-2024
+5	* Program:Implementing my_strstr function 
+6	* Sample Input :
+7	* Sample output :Enter a string: prapulla
+8	* 				 Enter a substring : ul
+9	* 				 index of the substring in mains string is 4
+10	*
+11	*/
+12	
+13	
+(gdb) l
+14	#include<stdio.h>
+15	int my_strstr(char str1[],char sub[]);
+16	
+17	int main()
+18	{
+19		char s1[100];
+20		char sub[20];
+21		int in;
+22	
+23		printf("Enter string \n");
+(gdb) l
+24		scanf("%[^\n]s",s1);
+25		
+26		printf("ENter sub string\n");
+27		getchar();
+28		scanf("%[^\n]s",sub);
+29		in=my_strstr(s1,sub);
+30		printf("index  is %d\n",in);
+31	
+32		return 0;
+33	}
+(gdb) l
+34	
+35	
+36	int my_strstr(char str1[],char sub[])
+37	{
+38		int i,j=0,k,l,count;
+39		for(i=0;str1[i]!='\0';i++)
+40		{
+41			k=i;
+42			count=0;
+43			j=0;
+(gdb) l
+44			if(str1[i]==sub[j])
+45			{
+46				count++;
+47				for(j=1;str1[++k]==sub[j];j++)
+48				{
+49					count++;
+50				}
+51				for(l=0;sub[l]!='\0';l++);
+52				if(count==l)
+53					return i;
+(gdb) l
+54			}
+55		}
+56	}
+57	
+58				
+(gdb) b 29
+Breakpoint 1 at 0x814: file strstr.c, line 29.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/gdb/8-strstr/gdb 
+Enter string 
+prapulla
+ENter sub string
+ul
+
+Breakpoint 1, main () at strstr.c:29
+29		in=my_strstr(s1,sub);
+(gdb) s
+my_strstr (str1=0x7fffffffde70 "prapulla", sub=0x7fffffffde50 "ul")
+    at strstr.c:38
+38		int i,j=0,k,l,count;
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) p i
+$1 = 0
+(gdb) p k
+$2 = 0
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) p str1[i]
+$3 = 114 'r'
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) p str1[i]
+$4 = 114 'r'
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) p i
+$5 = 1
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) p str1[i]
+$6 = 97 'a'
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) p i
+$7 = 3
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) s
+39		for(i=0;str1[i]!='\0';i++)
+(gdb) p str[i]
+No symbol "str" in current context.
+(gdb) p str1[i]
+$8 = 112 'p'
+(gdb) s
+41			k=i;
+(gdb) s
+42			count=0;
+(gdb) s
+43			j=0;
+(gdb) s
+44			if(str1[i]==sub[j])
+(gdb) s
+46				count++;
+(gdb) p str1[i]
+$9 = 117 'u'
+(gdb) s
+47				for(j=1;str1[++k]==sub[j];j++)
+(gdb) p count
+$10 = 1
+(gdb) 
+$11 = 1
+(gdb) s
+49					count++;
+(gdb) p str1[i]
+$12 = 117 'u'
+(gdb) s
+47				for(j=1;str1[++k]==sub[j];j++)
+(gdb) s
+51				for(l=0;sub[l]!='\0';l++);
+(gdb) p str1[i]
+$13 = 117 'u'
+(gdb) s
+52				if(count==l)
+(gdb) s
+53					return i;
+(gdb) s
+56	}
+(gdb) s
+main () at strstr.c:30
+30		printf("index  is %d\n",in);
+(gdb) n
+index  is 4
+32		return 0;
+(gdb) s
+33	}
+(gdb) s
+__libc_start_main (main=0x5555555547aa <main>, argc=1, 
+    argv=0x7fffffffdfc8, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdfb8)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) 
+

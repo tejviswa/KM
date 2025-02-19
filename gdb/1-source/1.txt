@@ -1,0 +1,179 @@
+Reading symbols from t1-dbg...done.
+(gdb) l
+5	* Program: 
+6	* Sample Input :
+7	* Sample output :
+8	*
+9	*/
+10	
+11	
+12	#include<stdio.h>
+13	int c_val=0;
+14	int sum(int,int);
+(gdb) l
+15	void error(void);
+16	
+17	int main()
+18	{
+19		int A1=20,A2=40;
+20		int i;
+21		for(i=0;i<10;i++)
+22		{
+23			if(A1>A2)
+24				A2=sum(A1,A2);
+(gdb) l
+25			else
+26				A1=sum(A1,A2);
+27		}
+28		error();
+29	}
+30	
+31	int sum(int a,int b)
+32	{
+33		return a+b;
+34	}
+(gdb) l
+35	
+36	void error(void)
+37	{
+38		int divide;
+39		int result;
+40		divide=c_val;
+41		result=10/divide;
+42		return;
+43	}
+44	
+(gdb) b 40
+Breakpoint 1 at 0x6a5: file t.c, line 40.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/Classroomexamples/gdb/t1-dbg 
+
+Breakpoint 1, error () at t.c:40
+40		divide=c_val;
+(gdb) s
+41		result=10/divide;
+(gdb) s
+
+Program received signal SIGFPE, Arithmetic exception.
+0x00005555555546b4 in error () at t.c:41
+41		result=10/divide;
+(gdb) p divide 
+$1 = 0
+(gdb) p div
+div         div_t       divmod_1.c  
+div.c       divide      divrem.c    
+(gdb) p divide=10
+$2 = 10
+(gdb) s
+
+Program terminated with signal SIGFPE, Arithmetic exception.
+The program no longer exists.
+(gdb) p divide
+$3 = divide
+(gdb) p divide
+$4 = divide
+(gdb) p divide=10
+Left operand of assignment is not an lvalue.
+(gdb) rni
+Target exec does not support this command.
+(gdb) p c_val 
+$5 = 0
+(gdb) p c_val=10
+Cannot access memory at address 0x555555755014
+(gdb) s
+The program is not being run.
+(gdb) s
+The program is not being run.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/Classroomexamples/gdb/t1-dbg 
+
+Breakpoint 1, error () at t.c:40
+40		divide=c_val;
+(gdb) p c_val=10
+$6 = 10
+(gdb) p divide 
+$7 = 1780
+(gdb) s
+41		result=10/divide;
+(gdb) p divide 
+$8 = 10
+(gdb) s
+42		return;
+(gdb) 
+43	}
+(gdb) 
+main () at t.c:29
+29	}
+(gdb) 
+__libc_start_main (main=0x55555555462a <main>, argc=1, 
+    argv=0x7fffffffdf98, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdf88)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) 
+__GI_exit (status=0) at exit.c:139
+139	exit.c: No such file or directory.
+(gdb) 
+138	in exit.c
+(gdb) 
+139	in exit.c
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/Classroomexamples/gdb/t1-dbg 
+
+Breakpoint 1, error () at t.c:40
+40		divide=c_val;
+(gdb) s
+41		result=10/divide;
+(gdb) s
+
+Program received signal SIGFPE, Arithmetic exception.
+0x00005555555546b4 in error () at t.c:41
+41		result=10/divide;
+(gdb) p c_val=10
+$9 = 10
+(gdb) s
+
+Program terminated with signal SIGFPE, Arithmetic exception.
+The program no longer exists.
+(gdb) p  divide=10
+Left operand of assignment is not an lvalue.
+(gdb) c
+The program is not being run.
+(gdb) f
+No stack.
+(gdb) c
+The program is not being run.
+(gdb) r
+Starting program: /home/km/KM_GITLAB/KM56B/km56besd04/C_Basics/Classroomexamples/gdb/t1-dbg 
+
+Breakpoint 1, error () at t.c:40
+40		divide=c_val;
+(gdb) p c_val=20
+$10 = 20
+(gdb) s
+41		result=10/divide;
+(gdb) s
+42		return;
+(gdb) s
+43	}
+(gdb) s
+main () at t.c:29
+29	}
+(gdb) s
+__libc_start_main (main=0x55555555462a <main>, argc=1, 
+    argv=0x7fffffffdf98, init=<optimized out>, fini=<optimized out>, 
+    rtld_fini=<optimized out>, stack_end=0x7fffffffdf88)
+    at ../csu/libc-start.c:344
+344	../csu/libc-start.c: No such file or directory.
+(gdb) s
+__GI_exit (status=0) at exit.c:139
+139	exit.c: No such file or directory.
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 2266] will be killed.
+
+Quit anyway? (y or n) y
+
