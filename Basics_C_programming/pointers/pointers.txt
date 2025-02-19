@@ -1,0 +1,67 @@
+
+
+
+
+
+
+#include<stdio.h>
+int main()
+{
+	int x=50;
+	int *p=&x;
+	printf("Address of variable :%p ,its value is :%d, its size is :%ld\n",&x,x,sizeof(x));
+	printf("Size of pointer is  : %ld\n",sizeof(p));
+	printf("Value of pointer is : %lx\n",p);
+
+	return 0;
+}
+
+
+
+OUTPUT 1:
+Address of variable :0x7fffec8a7aec ,its value is :50, its size is :4
+Size of pointer is  : 8
+Value of pointer is : 7fffec8a7aec
+
+
+
+OUTPUT 2:
+Address of variable :0x7ffe827deb1c ,its value is :64, its size is :4
+Size of pointer is  : 8
+Value of pointer is : 7ffe827deb1c
+
+
+OUTPUT 3:
+Address of variable :0x7ffecacb57ac ,its value is :25, its size is :4
+Size of pointer is  : 8
+Value of pointer is : 7ffecacb57ac
+
+======================================================
+
+
+
+
+#include<stdio.h>
+int main()
+{
+	int x,y;
+	printf("Enter 2 values:");
+	
+	int *p1,*p2;
+	p1=&x;
+	p2=&y;
+	scanf("%d %d",p1,p2);
+	printf("Addition result is :%d \n",*p1+*p2);
+	
+	
+
+	return 0;
+}
+
+OUTPUT:
+Enter 2 values:78 64
+Addition result is :142
+
+
+
+

@@ -1,0 +1,368 @@
+Operators Precedence & Associativity Assignments:
+------------------------------------------------
+
+
+
+1)
+
+#include <stdio.h>
+
+int main()
+
+{
+
+  int a = 10, b = 20, c = 30;
+  if (c > b > a)  
+   printf("TRUE");
+  else
+    printf("FALSE");
+  return 0;
+
+}
+
+
+OUTPUT1: FALSE
+
+-----------------------------
+
+
+
+2)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int a = 2;
+a *= 3 + 4;
+printf("%d",a);
+
+}
+
+
+OUTPUT2: 14
+
+------------------------------
+
+
+
+3)
+
+#include<stdio.h>
+
+int main()
+
+{
+
+    int a;
+    a = 1, 2, 3;
+    printf("%d", a);
+    return 0;
+
+}
+
+
+
+OUTPUT3: 1
+
+----------------------------
+
+
+
+4)
+
+#include<stdio.h>
+
+Void main()
+
+{
+
+    int a = 10, b = 0, c = 7;
+   printf("%d", a ? b : c == 7);
+   printf("%d", c = c || a && b);
+}
+
+
+
+
+OUTPUT:01
+
+--------------------------
+
+
+
+5)
+
+#include <stdio.h>
+
+int main()
+
+{
+
+  int a = 10, b = 20, c = 30;
+ c < b < a ? printf("TRUE\n") : printf("FALSE\n");
+}
+
+
+
+OUTPUT5: TRUE
+
+-----------------------------
+
+
+
+6)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int x,y,z;
+x = y = z = 10;
+(x + y = z && y >0 ) ? printf ("True") : printf("False");
+
+}
+
+
+
+
+OUTPUT6: ERROR
+
+---------------------------------
+
+
+
+7)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int a=10,b=20,c=30;
+int code = 1;
+code > 1 ?   a = b + c : a = 0;
+printf("%d",a);
+}
+
+
+OUTPUT7: ERROR
+
+---------------------------------
+
+
+
+8)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int c = 1,d;
+(c >= 1) ? printf(" 1 "): printf(" 2  "),printf(" 3 ");
+(c < 1) ? printf(" 1 "): printf(" 2  "),printf(" 3 ");
+d = (c >= 1) ? 1: 2,3; //d = 1
+d = (c < 1) ? 1: 2,3; //d = 2
+d = (c < 1) ? 1: (2,3); //d = 3
+d = (c >= 1) ? 1: (2,3); //d = 1
+}
+
+
+
+
+OUTPUT8: 1 3 2 3
+
+-----------------------------------
+
+
+
+9)
+
+#include <stdio.h>
+
+int main()
+
+{
+
+    int x = 2, y = 0;
+    int z = (y++) ? 2 : y == 1 && x;
+    printf("%d\n", z);
+    return 0;
+
+}
+
+
+
+
+OUTPUT9: 1
+
+--------------------------------
+
+
+
+10)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int a,b,c,sum;
+sum = (a=8,b=7,c=9,a+b+c);
+printf("%d\n",sum);
+}
+
+OUTPUT: 24
+
+------------------------------
+
+
+11)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int x,a = 10,b = 20,c = 40;
+x = a+b < c;
+printf ("%d",x);
+}
+
+
+
+OUTPUT11: 1
+
+--------------------------------
+
+
+
+12)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int x=3,a = 2,b = 10;
+x *= a + b;
+printf("%d\n",x);
+}
+
+
+
+OUTPUT12: 36
+
+--------------------------------
+
+
+
+13)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int x,a = 4,b = 5,c = 6;
+x = a <= b || b == c;
+printf("%d\n",x);
+}
+
+
+
+OUTPUT13:1
+
+----------------------------------
+
+
+
+14)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int a = 10,b = 20,c = 15;
+int x = 3,y=4,z;
+z = x ? y :( a ? b : c);
+printf("%d\n",z);
+}
+
+
+
+
+OUTPUT: 4
+
+--------------------------------
+
+
+
+15)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int c;
+c = 0,1,2,3 ? 1 : 0;
+printf("%s\n",c ? "Hi" : "Hello");
+}
+
+
+OUTPUT: Hello
+
+---------------------------------
+
+
+
+16)
+
+#include <stdio.h>
+
+main()
+
+{
+
+int c = printf("ab") + printf("bc") * printf("345");
+printf("%d",c);
+}
+
+
+OUTPUT: abbc3458
+
+---------------------------------
+
+
+
+17)
+
+#include <stdio.h>
+
+void main()
+
+{
+
+int a=1,b=2,c=3,d=4;
+a=a>b?c>d?0:1:1000;
+printf(“%d”,a);
+}
+
+
+OUTPUT17: 1000
+
