@@ -1,0 +1,13 @@
+         Data Types          format specifiers   Size(Bytes)
+       
+       signed int                   %d             4
+       unsigned int                %u               4
+       signed char                 %c               1
+      unsigned char                %c               1
+       short signed int            %hd              2
+      short unsigned int           %hu              2
+      long signed int             %ld               8
+      long unsigned int            %lu              8
+       float                       %f               4
+       double                       %lf              8
+       long double                 %LF              16
