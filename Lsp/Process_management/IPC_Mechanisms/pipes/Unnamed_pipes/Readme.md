@@ -171,4 +171,158 @@ int main() {
 
 ---
 
-Would you like to continue with **Named Pipes (FIFOs)** next, or jump into **Message Queues** or **Shared Memory**?
+
+
+
+
+
+
+# 📦 IPC Mechanism: **Named Pipes (FIFOs)**
+
+---
+
+## 📖 Definition
+
+> A **Named Pipe**, also called a **FIFO (First In First Out)** special file, is an IPC mechanism that allows **unrelated processes** to communicate with each other using a file-like interface.  
+> Unlike unnamed pipes, FIFOs are **persistent objects** in the filesystem, created using the `mkfifo()` system call or `mknod` command.
+
+---
+
+## 🧠 Key Properties of Named Pipes
+
+| Property            | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| **Type**            | Half-duplex (unidirectional)                                                |
+| **Scope**           | Between **unrelated processes**                                             |
+| **Naming**          | Exists as a file in the filesystem                                          |
+| **Persistence**     | Exists until deleted (even after process exits)                             |
+| **Creation**        | `mkfifo()` or shell `mkfifo` command                                        |
+| **Location**        | File path (e.g., `/tmp/myfifo`)                                             |
+| **Communication**   | Via file descriptors using `open()`, `read()`, `write()`                    |
+| **Data Transfer**   | Byte-stream; no message boundaries                                          |
+| **Blocking**        | Yes (reader blocks if no writer and vice versa)
+
+---
+
+## 📦 `mkfifo()` System Call
+
+```c
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int mkfifo(const char *pathname, mode_t mode);
+```
+
+### 🛠️ Parameters:
+- `pathname`: Path to FIFO file (e.g., `/tmp/myfifo`)
+- `mode`: Permissions (e.g., `0666` for read & write)
+
+---
+
+## ✅ Example – **Two Processes using FIFO**
+
+---
+
+### 🔧 Step 1: Writer Process (writer.c)
+
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+
+int main() {
+    int fd;
+    char *fifo = "/tmp/myfifo";
+
+    mkfifo(fifo, 0666); // Create FIFO if not exists
+
+    fd = open(fifo, O_WRONLY);
+    char msg[] = "Hello from writer!";
+    write(fd, msg, strlen(msg) + 1);
+    close(fd);
+
+    return 0;
+}
+```
+
+---
+
+### 🔧 Step 2: Reader Process (reader.c)
+
+```c
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+
+int main() {
+    int fd;
+    char *fifo = "/tmp/myfifo";
+    char buffer[100];
+
+    fd = open(fifo, O_RDONLY);
+    read(fd, buffer, sizeof(buffer));
+    printf("Reader received: %s\n", buffer);
+    close(fd);
+
+    return 0;
+}
+```
+
+---
+
+## 🔄 Flow
+
+1. **Writer** creates a FIFO file (`/tmp/myfifo`)
+2. It **writes** a message using `write()`
+3. **Reader** opens same FIFO and reads using `read()`
+4. FIFO acts as a **one-way channel**
+
+---
+
+## ⚠️ Blocking Behavior
+
+- If the **reader** opens FIFO first, it will **block** until a **writer** opens it.
+- Similarly, **writer** blocks if there's no **reader**.
+
+You can use **O_NONBLOCK** with `open()` to avoid blocking:
+
+```c
+fd = open(fifo, O_RDONLY | O_NONBLOCK);
+```
+
+---
+
+## 🧪 Shell Example using `mkfifo`
+
+```bash
+$ mkfifo mypipe
+$ echo "Hi there" > mypipe   # In one terminal
+$ cat < mypipe               # In another terminal
+```
+
+---
+
+## 🧽 Cleanup
+
+```bash
+$ rm /tmp/myfifo
+```
+
+---
+
+## ✅ Summary
+
+| Feature              | Description |
+|----------------------|-------------|
+| **Persistence**       | Exists as a real file |
+| **Scope**             | Allows unrelated processes |
+| **Blocking**          | Yes, unless O_NONBLOCK used |
+| **Best Use**          | IPC between different programs/scripts |
+| **Limitation**        | One-direction per FIFO |
+
+---
+
+Would you like to continue with **Message Queues** next, or dive deeper into FIFO variations like bi-directional communication using two FIFOs?
